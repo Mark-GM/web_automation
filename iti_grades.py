@@ -27,14 +27,14 @@ browser.find_element(By.ID, "txtUsername").send_keys(secrets["COOL_USER"])
 browser.find_element(By.ID, "txtpassword").send_keys(secrets["GREATEST_PASSWD"])
 browser.find_element(By.ID, "btnlogin").click()
 
-# get username
-username = browser.find_element(By.CSS_SELECTOR, "#lblusername").text
 iti_grades = "http://apps.iti.gov.eg/ManagementSystem/Student/StudentGrade.aspx"
 browser.get(iti_grades)
 browser.implicitly_wait(10)
 
+# get username
+username = browser.find_element(By.CSS_SELECTOR, "#lblusername").text
 # save grades screenshot
-browser.save_full_page_screenshot(f"{username}_results.png")
+browser.save_full_page_screenshot(f"{username}_grades.png")
 # logout from iti
 browser.find_element(By.CSS_SELECTOR, ".logout.tipN").click()
 browser.implicitly_wait(5)
