@@ -9,12 +9,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 opts = Options()
 opts.headless = True
-assert opts.headless  # Operating in headless mode
 browser = Firefox(options=opts)
 wait = WebDriverWait(browser, 15)
 # login page
-# browser.get("http://apps.iti.gov.eg/ManagementSystem/Student/StudentGrade.aspx")
-# student link
 iti_login = "http://apps.iti.gov.eg/ManagementSystem/intlogin.aspx"
 browser.get(iti_login)
 
@@ -30,30 +27,12 @@ browser.find_element(By.ID, "txtUsername").send_keys(secrets["COOL_USER"])
 browser.find_element(By.ID, "txtpassword").send_keys(secrets["GREATEST_PASSWD"])
 browser.find_element(By.ID, "btnlogin").click()
 
-# evaluation page
-# browser.title  # get current page title
-
-""" try:
-    wait.until(EC.presence_of_element_located((By.CLASS_NAME, "icos-books2")))
-except:
-    print("the main page is taking too much to load, please try again!")
-    quit() """
-
-
 # get username
 username = browser.find_element(By.CSS_SELECTOR, "#lblusername").text
 iti_grades = "http://apps.iti.gov.eg/ManagementSystem/Student/StudentGrade.aspx"
 browser.get(iti_grades)
 browser.implicitly_wait(10)
-""" try:
-    WebDriverWait(browser, 20).until(
-        EC.presence_of_element_located(
-            By.ID, "ContentPlaceHolder1_UcViewGrade1_GrdViewcourseEval"
-        )
-    )
-except:
-    print("the grades page is taking too much to load, please try again!")
-    quit() """
+
 # save grades screenshot
 browser.save_full_page_screenshot(f"{username}_results.png")
 # logout from iti
